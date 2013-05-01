@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Jakk - Tool</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link href="css/jquery-ui.css" rel="stylesheet">
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/bootstrap-responsive.css" rel="stylesheet">
+		<link href="css/jakk.css" rel="stylesheet">
+		<style>
+			body {
+				padding-top: 60px;
+			}
+		</style>
+
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery-ui.js"></script>
+		<script src="js/bootstrap.js"></script>
+
+		<script src="js/jakk.js"></script>
+	</head>
+
+	<body>
+
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="brand">Jakk - Akkreditierungs Tool</a>
+					<div class="nav-collapse collapse">
+						<ul class="nav">
+							<li>
+								<a id="loged_user"></a>
+							</li>
+							<li>
+								<a onclick="logout();">Logout</a>
+							</li>
+						</ul>
+					</div>
+					<div class="nav-collapse collapse pull-right">
+						<ul class="nav">
+							<li class="active">
+								<a id="counter">&nbsp;</a>
+							</li>
+							<li>
+								<a id="uhr">Starting . . .</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div style="display: none;" id="content">			
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<td colspan="2"><input type="text" placeholder="Mitglidsnummer" tabindex="1" id="membershipid" onkeypress="such_enter(event);" onkeyup="this.value=this.value.replace(/[^\d]/,'')"/></td>
+						<td colspan="3">
+							<button class="btn btn btn-success" onclick="such();" title="Enter">Suchen</button>
+							<button class="btn btn-danger"		onclick="reset();" title="Strg+R"><u>R</u>eset</button>
+							<button class="btn btn-info"		onclick="last();" title="Strg+L"><u>L</u>etzte Akkredetierung</button>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="text" tabindex="1" onkeypress="such_enter(event);" placeholder="Vorname" 		id="firstname"/></td>
+						<td><input type="text" tabindex="1" onkeypress="such_enter(event);" placeholder="Nachname" 		id="lastname" /></td>
+						<td><input type="text" tabindex="1" onkeypress="such_enter(event);" placeholder="Landesverband" id="division"/></td>
+						<td><input type="text" tabindex="1" onkeypress="such_enter(event);" placeholder="Geb."			id="birthdate" class="input-mini"/></td>
+						<td><input type="text" tabindex="1" onkeypress="such_enter(event);" placeholder="Straße" 		id="adress" /></td>
+						<td><input type="text" tabindex="1" onkeypress="such_enter(event);" placeholder="Plz" 			id="zipcode" class="input-mini"/></td>
+						<td><input type="text" tabindex="1" onkeypress="such_enter(event);" placeholder="Ort" 			id="city"/></td>
+					</tr>
+					
+				</thead>
+				<tbody id="liste">
+				</tbody>
+			</table>
+			<div id="member" style="display: none;">
+				<table class="table table-striped pull-right"id="change_tabel"></table>
+				
+				<dl>
+				  <dt>Mitglidsnummer</dt>
+				  <dd id="membershipid_show"></dd>
+				</dl>
+				<dl id="_warning">
+				  <dt>Warnung</dt>
+				  <dd id="warning"></dd>
+				</dl>
+				<dl id="_comment">
+				  <dt>Hinweiß</dt>
+				  <dd id="comment"></dd>
+				</dl>
+				
+				<button class="btn btn-primary" id="akk_btn">Button</button>
+				<button class="btn btn-warning" id="unpay">Bezahlung zurückziehen</button><br />
+				<textarea id="note" placeholder="Vermerk über Besonderheiten bei der Aktion" ></textarea>
+			</div>
+		</div>
+		
+		<div class="container" id="login" style="display: none;">
+			<div class="content">
+				<div class="row">
+					<div class="login-form">
+						<h2>Login</h2>
+						<form onsubmit="login(); return false;">
+								<h3 id="login_error" style="color: red; display: none;">Benutzername / Password ist falsch</h3>
+							<fieldset>
+								<div class="clearfix">
+									<input type="text" id="username" placeholder="Username">
+								</div>
+								<div class="clearfix">
+									<input type="password" id="password" placeholder="Password">
+								</div>
+								<button class="btn primary" type="submit">
+									Sign in
+								</button>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="wait">
+			<center>
+				<img src="img/wait.gif" />
+			</center>
+		</div>
+		<noscript>
+			<center style="color: red; font-size: 3em;">
+				Javascript wird benötigt!
+			</center>
+		</noscript>
+	</body>
+</html>

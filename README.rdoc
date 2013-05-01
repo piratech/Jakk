@@ -1,0 +1,5 @@
+== Jakk - Akkreditierungs Tool
+
+Jakk ist ein vor allem in JQuery geschriebenes Tool zur Akkreditierung auf Versammlungen.
+
+Die API ist in PHP geschrieben und basiert auf einer MySQL Datenbank.

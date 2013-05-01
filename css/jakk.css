@@ -1,0 +1,22 @@
+#_comment {
+	border: 2px solid;
+	border-color: green;
+	padding: 5px;
+	max-width: 45%;
+}
+
+#_warning {
+	border: 2px solid;
+	border-color: red;
+	padding: 5px;
+	max-width: 45%;
+}
+
+#change_tabel {
+	width: 50%;
+}
+
+#note {
+	margin: 10px;
+	width: 45%;
+}
