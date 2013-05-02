@@ -7,6 +7,9 @@ var Ereignisse = {
 
 var autocompleteBase = {};
 
+var TimeOut = 600;
+var TickerCount = 0;
+
 function buildAutocomplete(data) {
 	$("#division").autocomplete({
 		source : data["division"]
@@ -276,6 +279,7 @@ function reset() {
 }
 
 document.onkeypress = function(e) {
+	TimeOut = 600;
 	if (!e)
 		e = window.event;
 	if (e.ctrlKey) {
@@ -366,6 +370,7 @@ function init() {
 			$('#content').show();
 			$('#wait').hide();
 			reset();
+			window.setTimeout('Ticker()', 1000);
 		}
 	}).fail(function(data) {
 		alert(data.responseText);
@@ -406,13 +411,61 @@ function logout() {
 }
 
 function report(url) {
-	$('#report').csv2table(url);
+	$('#report').empty().css('color', '').csv2table(url);
 	$("#dialog").prop('title', 'Data Report').dialog({
 		autoOpen : true,
 		width : '99%',
 		position : [0, 60]
 
 	});
+}
+
+function Ticker() {
+	TickerCount = TickerCount + 1;
+	if (TickerCount >= 20) {
+		TickerCount = 0;
+		$.ajax({
+			url : 'api.php',
+			cache : false,
+			type : 'POST',
+			data : {
+				"modul" : "info"
+			},
+			success : function(data) {
+				data = JSON.parse(data);
+				$("#Akked").text(data["akked"] + " Person Akkreditiert")
+
+			}
+		})
+	}
+	window.setTimeout('Ticker()', 1000);
+
+	TimeOut = TimeOut - 1;
+	if (TimeOut == 0) {
+		$('#report').text("Die Session läuft gleich ab!");
+		$("#dialog").prop('title', 'Warnung').dialog({
+			buttons : [{
+				text : "Abmelden",
+				class : "btn btn-danger",
+				click : function() {
+					logout();
+				}
+			}, {
+				text : "Weiterarbeiten",
+				class : "btn btn-success",
+				click : function() {
+					TimeOut = 600;
+					$(this).dialog("close");
+				}
+			}],
+			autoOpen : true,
+			width : 'auto',
+			position : 'center'
+		});
+	}
+	if (TimeOut <= -30) {
+		logout();
+	}
 }
 
 $(function() {
