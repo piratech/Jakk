@@ -11,6 +11,7 @@ if ($_POST["login"]){
 	if (md5($_POST["password"]) == $d["hash"]){
 		$_SESSION["name"] = $d["name"];
 		$_SESSION["uid"] = $d["userid"];
+		$_SESSION["treasurer"] = ($d["treasurer"] == 1);
 	}
 }
 
