@@ -197,6 +197,7 @@ function such() {
 		data["membershipid"] = $("#membershipid").val();
 		var wenig = false;
 	} else {
+		data["name"] = $("#name").val();
 		data["firstname"] = $("#firstname").val();
 		data["lastname"] = $("#lastname").val();
 		data["division"] = $("#division").val();
@@ -273,7 +274,7 @@ function reset() {
 	$.each($("input"), function(key, val) {
 		val.value = "";
 	});
-	document.getElementById("membershipid").focus();
+	document.getElementById("name").focus();
 	window.scrollTo(0, 0);
 	buildAutocomplete(autocompleteBase);
 }

@@ -3,9 +3,12 @@
 $q = $_POST;
 
 if ($q["membershipid"]) {
-	$w = "membershipid = " . ($q["membershipid"] + 0);
+	$w = "membershipid like '" . mysql_real_escape_string($q["membershipid"]) . "'";
 } else {
 	$w = array();
+	if ($q["name"] <> "") {
+		$w[] = "((firstname like '%" . mysql_real_escape_string($q["name"]) . "%') or (lastname like '%" . mysql_real_escape_string($q["name"]) . "%'))";
+	}
 	$vals = array("firstname", "lastname", "division", "adress", "zipcode", "city", "birthdate");
 	foreach ($vals as $key) {
 		if ($q["$key"] != "")

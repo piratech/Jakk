@@ -91,8 +91,9 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<td colspan="2"><input type="text" placeholder="Mitglidsnummer" tabindex="1" id="membershipid" onkeypress="such_enter(event);" onkeyup="this.value=this.value.replace(/[^\d]/,'')"/></td>
-						<td colspan="3">
+						<td colspan="7">
+							<input type="text" placeholder="Vor oder Nachname" tabindex="1" id="name" onkeypress="such_enter(event);" class="input-xlarge"/>
+							<input type="text" placeholder="Mitglidsnummer" tabindex="1" id="membershipid" onkeypress="such_enter(event);" />
 							<button class="btn btn btn-success" onclick="such();" title="Enter">Suchen</button>
 							<button class="btn btn-danger"		onclick="reset();" title="Strg+R"><u>R</u>eset</button>
 							<button class="btn btn-info"		onclick="last();" title="Strg+L"><u>L</u>etzte Akkredetierung</button>
