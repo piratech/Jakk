@@ -414,6 +414,7 @@ function report(url) {
 	$('#report').empty().css('color', '').csv2table(url);
 	$("#dialog").prop('title', 'Data Report').dialog({
 		autoOpen : true,
+		buttons : [],
 		width : '99%',
 		position : [0, 60]
 
