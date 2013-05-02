@@ -157,7 +157,7 @@ function buildTable(data) {
 		}).appendTo('#liste');
 
 		$('<td/>', {
-			html : val["firstname"] + " " + val["middlename"]
+			html : val["firstname"]
 		}).appendTo(tr);
 		$('<td/>', {
 			html : val["lastname"]
