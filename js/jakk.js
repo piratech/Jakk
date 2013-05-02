@@ -405,6 +405,16 @@ function logout() {
 	})
 }
 
+function report(url) {
+	$('#report').csv2table(url);
+	$("#dialog").prop('title', 'Data Report').dialog({
+		autoOpen : true,
+		width : '99%',
+		position : [0, 60]
+
+	});
+}
+
 $(function() {
 	$.ajax({
 		url : 'login.php',

@@ -17,6 +17,7 @@
 
 		<script src="js/jquery.js"></script>
 		<script src="js/jquery-ui.js"></script>
+		<script src="js/jquery-csv2table.js"></script>
 		<script src="js/bootstrap.js"></script>
 
 		<script src="js/jakk.js"></script>
@@ -41,6 +42,32 @@
 							<li>
 								<a onclick="logout();">Logout</a>
 							</li>
+							<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Report <b class="caret"></b> </a>
+								<ul class="dropdown-menu">
+									<li>
+										<a onclick="report('api.php?m=report&type=akked');">Alle Akkredetierten</a>
+									</li>
+									<li>
+										<a onclick="report('api.php?m=report&type=changes');">Alle Aktionen</a>
+									</li>
+									<li>
+										<a onclick="report('api.php?m=report&type=schatz');">Report Zahlungen</a>
+									</li>
+									<li class="divider"></li>
+									<li class="nav-header">
+										Download
+									</li>
+									<li>
+										<a href="api.php?m=report&type=akked" target="__blank">Alle Akkredetierten</a>
+									</li>
+									<li>
+										<a href="api.php?m=report&type=changes" target="__blank">Alle Aktionen</a>
+									</li>
+									<li>
+										<a href="api.php?m=report&type=schatz" target="__blank">Report Zahlungen</a>
+									</li>
+								</ul>
+								</li>
 						</ul>
 					</div>
 					<div class="nav-collapse collapse pull-right">
@@ -132,6 +159,9 @@
 			<center>
 				<img src="img/wait.gif" />
 			</center>
+		</div>
+		<div id="dialog">
+		  <div id="report"></div>
 		</div>
 		<noscript>
 			<center style="color: red; font-size: 3em;">
